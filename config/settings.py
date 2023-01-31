@@ -144,7 +144,7 @@ if DEBUG:
             'USER': config('DB_USER'),
             'PASSWORD': config('DB_PASS'),
             'HOST': config('HOST'),
-            'PORT': 5432
+            'PORT': config('PORT'),
         }
     }
 else:
