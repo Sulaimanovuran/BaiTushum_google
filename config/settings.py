@@ -135,15 +135,15 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-if DEBUG:
-# if DEBUG == False:
+# if DEBUG:
+if DEBUG == False:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': config('DB_NAME'),
             'USER': config('DB_USER'),
             'PASSWORD': config('DB_PASS'),
-            'HOST': 'localhost',
+            'HOST': config('HOST'),
             'PORT': 5432
         }
     }
