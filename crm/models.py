@@ -203,6 +203,7 @@ class Images(models.Model):
 
 
 class Conversation(models.Model):
+    creared_date = models.DateField(default=datetime.date.today())
     is_meeting = models.BooleanField(default=False, verbose_name='Личная встреча')
     name = models.CharField(max_length=100, verbose_name='Название')
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время', null=True, blank=True,)

@@ -1,6 +1,7 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.views import APIView
 
 from .serializers import *
 
@@ -140,3 +141,13 @@ class APIActivity(generics.ListCreateAPIView):
     # def max_and_min(self, request):
     #     res = Activity.objects.filter()
     #     return Response(ActivitySerializer(res, many=True).data)
+
+
+class DashboardView(APIView):
+    def get(self, request):
+        try:
+
+            data = Conversation.objects.all().values('date').annotate(total=Count('id')).order_by('date')
+            return Response({"Conversation": [i for i in data]})
+        except:
+            return Response('При получении данных произошла ошибка!')
