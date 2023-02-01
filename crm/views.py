@@ -155,5 +155,5 @@ class DashboardView(APIView):
             data = Conversation.objects.all().values('date').annotate(total=Count('id')).order_by('date')
             return Response({"Conversation": [i for i in data]})
         except:
-            return Response()
+            return Response('При получении данных произошла ошибка!')
 
