@@ -1,4 +1,3 @@
-
 import datetime
 
 from rest_framework.response import Response
@@ -8,7 +7,7 @@ from rest_framework.viewsets import ModelViewSet
 from django.db.models import Count
 import json
 
-from .serializers import *
+>>>>>>> 7148b6ab012b523e78a366d10bdb587521eb4ee4izers import *
 
 
 class APIClient(ModelViewSet):
@@ -145,8 +144,11 @@ class APIActivity(generics.ListCreateAPIView):
     # @decorators.action(['GET'], detail=False)
     # def max_and_min(self, request):
     #     res = Activity.objects.filter()
+<<<<<<< HEAD
     #     return Response(ActivitySerializer(res, many=True).data)
-
+=======
+    #     return Response(ActivitySerializer(res, many=True).data)S
+>>>>>>> 7148b6ab012b523e78a366d10bdb587521eb4ee4
 
 
 class DashboardView(APIView):
@@ -157,4 +159,7 @@ class DashboardView(APIView):
             return Response({"Conversation": [i for i in data]})
         except:
             return Response('При получении данных произошла ошибка!')
+<<<<<<< HEAD
+=======
 
+>>>>>>> 7148b6ab012b523e78a366d10bdb587521eb4ee4
