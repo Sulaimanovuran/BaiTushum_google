@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from rest_framework import status, generics
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import IsAuthenticated
@@ -49,3 +50,6 @@ class UserFullNameView(APIView):
             return Response('Пользователь не авторизован')
 
 
+class RApi(APIView):
+    def get(self,request):
+        return HttpResponseRedirect('http://localhost:8000/admin/')

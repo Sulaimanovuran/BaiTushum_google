@@ -7,7 +7,6 @@ from rest_framework.viewsets import ModelViewSet
 from django.db.models import Count
 import json
 
-
 from .serializers import *
 
 

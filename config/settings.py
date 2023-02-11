@@ -143,8 +143,6 @@ if DEBUG:
             'NAME': config('DB_NAME'),
             'USER': config('DB_USER'),
             'PASSWORD': config('DB_PASS'),
-            'HOST': config('HOST'),
-            'PORT': config('PORT'),
         }
     }
 else:
@@ -190,8 +188,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+STATIC_ROOT = '/home/user/Desktop/My_projects/site/assets/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
