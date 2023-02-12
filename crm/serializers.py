@@ -12,11 +12,11 @@ class SerializerClient(serializers.ModelSerializer):
         model = Client
         fields = "__all__"
 
-    def to_representation(self, instance):
-        rep = super().to_representation(instance)
-        rep['id_guarantor'] = SerializerGuarantor(instance.id_guarantor).data
+#    def to_representation(self, instance):
+#        rep = super().to_representation(instance)
+#        rep['id_guarantor'] = SerializerGuarantor(instance.id_guarantor).data
         # rep['id_property'] = SerializerPropertyAdmin(instance.id_property).data
-        return rep
+#        return rep
 
 
 class SerializerEntity(serializers.ModelSerializer):
@@ -34,10 +34,10 @@ class SerializerCompany(serializers.ModelSerializer):
         model = Company
         fields = '__all__'
 
-    def to_representation(self, instance):
-        rep = super().to_representation(instance)
-        rep['field_activity'] = ActivitySerializer(instance.field_activity).data['activites_add']
-        return rep
+#    def to_representation(self, instance):
+#        rep = super().to_representation(instance)
+#        rep['field_activity'] = ActivitySerializer(instance.field_activity).data['activites_add']
+#        return rep
 
 
 class FilesSerializer(serializers.ModelSerializer):
@@ -47,7 +47,7 @@ class FilesSerializer(serializers.ModelSerializer):
 
     def get_url(self, instance):
         if instance.file.url.startswith('/media'):
-            return f'https://bt-back-demo.herokuapp.com{instance.file.url}'
+            return f'https://baitushum.pp.ua{instance.file.url}'
         return instance.file.url
 
     def to_representation(self, instance):
@@ -64,7 +64,7 @@ class ImagesSerializer(serializers.ModelSerializer):
     def get_url(self, instance):
         if instance.image.url.startswith('/media'):
             print(instance.image.url)
-            return f'https://bt-back-demo.herokuapp.com{instance.image.url}'
+            return f'https://baitushum.pp.ua{instance.image.url}'
         return instance.image.url
 
     def to_representation(self, instance):
@@ -117,11 +117,11 @@ class SerializersConvers(serializers.ModelSerializer):
         model = Conversation
         fields = '__all__'
 
-    def to_representation(self, instance):
-        rep = super().to_representation(instance)
-        rep['entity_id'] = SerializerEntity(instance.entity_id).data['full_name_director']
-        rep['client_id'] = SerializerClient(instance.client_id).data['full_name']
-        return rep
+#    def to_representation(self, instance):
+#        rep = super().to_representation(instance)
+#        rep['entity_id'] = SerializerEntity(instance.entity_id).data['full_name_director']
+#        rep['client_id'] = SerializerClient(instance.client_id).data['full_name']
+#        return rep
 
 
 class SerializersDataKK(serializers.ModelSerializer):
@@ -132,11 +132,11 @@ class SerializersDataKK(serializers.ModelSerializer):
         model = DataKK
         fields = '__all__'
 
-    def to_representation(self, instance):
-        rep = super().to_representation(instance)
-        rep['id_entity'] = SerializerEntity(instance.id_entity).data['full_name_director']
-        rep['id_client'] = SerializerClient(instance.id_client).data['full_name']
-        return rep
+#    def to_representation(self, instance):
+#        rep = super().to_representation(instance)
+#        rep['id_entity'] = SerializerEntity(instance.id_entity).data['full_name_director']
+#        rep['id_client'] = SerializerClient(instance.id_client).data['full_name']
+#        return rep
 
 
 class ActivitySerializer(serializers.ModelSerializer):

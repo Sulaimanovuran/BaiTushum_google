@@ -1,14 +1,13 @@
-import datetime
+
 
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from django.db.models import Count
-import json
 
 from .serializers import *
-
+from .utils import get_dashboard_data
 
 class APIClient(ModelViewSet):
     queryset = Client.objects.order_by('-id').select_related('id_guarantor','id_property','id_credit_spec')
@@ -144,15 +143,32 @@ class APIActivity(generics.ListCreateAPIView):
     # @decorators.action(['GET'], detail=False)
     # def max_and_min(self, request):
     #     res = Activity.objects.filter()
-    #     return Response(ActivitySerializer(res, many=True).data)S
+    #     return Response(ActivitySerializer(res, many=True).data)
+
 
 
 class DashboardView(APIView):
     def get(self, request):
-        try:
 
-            data = Conversation.objects.all().values('date').annotate(total=Count('id')).order_by('date')
-            return Response({"Conversation": [i for i in data]})
-        except:
-            return Response('При получении данных произошла ошибка!')
+        client = get_dashboard_data(Client, 'dh_date', 'id')
+        entity = get_dashboard_data(Entity, 'dh_date', 'id')
+        company = get_dashboard_data(Company, 'dh_date', 'id')
+        guarant = get_dashboard_data(Guarantor, 'dh_date', 'id')
+        propert = get_dashboard_data(Property, 'dh_date', 'id')
+        convers = get_dashboard_data(Conversation, 'created_date', 'id')
+        datakk = get_dashboard_data(DataKK, 'dh_date', 'id')
+
+        return Response({
+
+            "Client":[i for i in client], 
+            "Entity":[i for i in entity], 
+            "Company":[i for i in company],
+            "Guarantor":[i for i in guarant],
+            "Property":[i for i in propert],
+            "Conversation": [i for i in convers],
+            "datakk":[i for i in datakk]
+
+            })
+
+
 

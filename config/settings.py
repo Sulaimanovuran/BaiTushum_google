@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 
-DEBUG = True # DEBUG = True if config('DEBUG') == '1' else False
+DEBUG = True #DEBUG = True if config('DEBUG') == '1' else False
 
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
@@ -143,6 +143,7 @@ if DEBUG:
             'NAME': config('DB_NAME'),
             'USER': config('DB_USER'),
             'PASSWORD': config('DB_PASS'),
+            
         }
     }
 else:
@@ -187,21 +188,32 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = '/home/user/Desktop/My_projects/site/assets/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
 
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-)
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+MEDIA_URL = '/media/' # URL для медии в шаблонах
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') # пустая папка, сюда будет собирать статику collectstatic
+
+STATIC_URL = '/static/' # URL для шаблонов
+
+
+STATICFILES_DIRS = (
+
+os.path.join(BASE_DIR, 'assets'),
+
+)
+# "Поисковики" статики. Первый ищет статику в STATICFILES_DIRS,
+
+# второй в папках приложений.
+
+STATICFILES_FINDERS = (
+
+'django.contrib.staticfiles.finders.FileSystemFinder',
+
+'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -214,6 +226,7 @@ CORS_ALLOW_ORIGINS = [
     'http://127.0.0.1:3001',
     'https://www.thunderclient.com',
     'https://bai-tushim.netlify.app',
+    'https://bai-tushum.netlify.app'
 ]
 
 CORS_ORIGIN_WHITELIST = [
@@ -223,6 +236,8 @@ CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:3001',
     'https://www.thunderclient.com',
     'https://bai-tushim.netlify.app',
+    'https://bai-tushum.netlify.app'
+
 ]
 
 DRF_API_LOGGER_DATABASE = True  # Default to False
@@ -238,3 +253,7 @@ SWAGGER_SETTINGS = {
         }
     }
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://baitushum.pp.ua'
+]

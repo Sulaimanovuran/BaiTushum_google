@@ -52,4 +52,5 @@ class UserFullNameView(APIView):
 
 class RApi(APIView):
     def get(self,request):
-        return HttpResponseRedirect('http://localhost:8000/admin/')
+
+        return HttpResponseRedirect('https://baitushum.pp.ua/admin/')

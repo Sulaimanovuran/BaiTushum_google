@@ -58,9 +58,9 @@ admin.site.register(Property, PropertyAdmin)
 
 
 class ConversationAdmin(admin.ModelAdmin):
-    list_display = ['id', 'client', 'date']
-    list_filter = ['date', 'is_meeting']
-    search_fields = ['id', 'client', 'date']
+    list_display = ['id', 'client', 'created_date']
+    list_filter = ['created_date', 'is_meeting']
+    search_fields = ['id', 'client', 'created_date']
 
 
 admin.site.register(Conversation, ConversationAdmin)

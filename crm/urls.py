@@ -16,5 +16,5 @@ r.register('dataKK', APIDataKK)
 urlpatterns = [
     path('api/', include(r.urls)),
     path('api/activity/', APIActivity.as_view()),
-    path('test/', DashboardView.as_view())
+    path('dashboard/', DashboardView.as_view())
 ]
